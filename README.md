@@ -17,6 +17,12 @@ The application provides live visualization, telemetry, mission event tracking a
 
 ---
 
+## Demo
+
+https://github.com/Inon-Kadosh/AeroSim/blob/main/screenshots/demo.mp4
+
+---
+
 ## Screenshots
 
 | Main Window | Live Flight |
