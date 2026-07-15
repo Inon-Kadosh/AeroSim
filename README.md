@@ -188,18 +188,6 @@ The simulation runs incrementally using `LiveSimulationSession`, allowing the UI
 
 ---
 
-## Screenshots
-
-### Main Simulation Window
-
-> *(Add screenshot here)*
-
-### Mission Event Log
-
-> *(Add screenshot here)*
-
----
-
 ## Future Improvements
 
 - Wind model
