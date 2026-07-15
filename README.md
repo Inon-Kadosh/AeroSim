@@ -205,7 +205,7 @@ The simulation runs incrementally using `LiveSimulationSession`, allowing the UI
 ### Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/AeroSim.git
+git clone https://github.com/Inon-Kadosh/AeroSim.git
 ```
 
 ### Build
