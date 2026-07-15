@@ -1,0 +1,28 @@
+# Build output
+bin/
+obj/
+
+# Rider / JetBrains
+.idea/
+
+# Visual Studio
+.vs/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# User files
+*.user
+*.suo
+
+# NuGet
+*.nupkg
+
+# Logs
+*.log
+
+# Generated telemetry
+telemetry.csv

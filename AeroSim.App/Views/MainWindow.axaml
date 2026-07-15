@@ -1,0 +1,840 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:AeroSim.App.ViewModels"
+    xmlns:controls="using:AeroSim.App.Controls"
+    x:Class="AeroSim.App.Views.MainWindow"
+    x:DataType="vm:MainViewModel"
+    Width="1400"
+    Height="850"
+    MinWidth="1050"
+    MinHeight="650"
+    Title="AeroSim"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:MainViewModel/>
+    </Design.DataContext>
+
+    <Grid
+        Background="#101318"
+        ColumnDefinitions="330,*">
+
+        <!-- ================================================= -->
+        <!-- LEFT CONFIGURATION PANEL                          -->
+        <!-- ================================================= -->
+
+        <Border
+            Grid.Column="0"
+            Margin="16"
+            Padding="16"
+            Background="#171B22"
+            BorderBrush="#303743"
+            BorderThickness="1"
+            CornerRadius="10">
+
+            <Grid RowDefinitions="Auto,*,Auto">
+
+                <!-- Panel Header -->
+
+                <StackPanel Grid.Row="0"
+                            Margin="0,0,0,14">
+
+                    <TextBlock
+                        Text="Simulation Setup"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Foreground="#F4F6F8"/>
+
+                    <TextBlock
+                        Text="Configure the vehicle and flight environment"
+                        Margin="0,4,0,0"
+                        FontSize="12"
+                        Foreground="#9CA6B5"/>
+
+                </StackPanel>
+
+                <!-- Scrollable Configuration -->
+
+                <ScrollViewer
+                    Grid.Row="1"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Disabled">
+
+                    <StackPanel Spacing="10">
+
+                        <!-- Launch -->
+
+                        <Expander
+                            Header="Launch Conditions"
+                            IsExpanded="True">
+
+                            <StackPanel
+                                Margin="0,10,0,4"
+                                Spacing="8">
+
+                                <TextBlock
+                                    Text="Initial X Position (m)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.InitialXPositionMeters}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Initial Altitude (m)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.InitialAltitudeMeters}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Initial Speed (m/s)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.InitialSpeedMetersPerSecond}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Launch Angle (degrees)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.LaunchAngleDegrees}"
+                                    HorizontalContentAlignment="Right"/>
+
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Rocket -->
+
+                        <Expander
+                            Header="Rocket"
+                            IsExpanded="False">
+
+                            <StackPanel
+                                Margin="0,10,0,4"
+                                Spacing="8">
+
+                                <TextBlock
+                                    Text="Dry Mass (kg)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.DryMassKg}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Payload Mass (kg)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.PayloadMassKg}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Fuel Mass (kg)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.FuelMassKg}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Diameter (m)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.DiameterMeters}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Length (m)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.LengthMeters}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Drag Coefficient"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.DragCoefficient}"
+                                    HorizontalContentAlignment="Right"/>
+
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Engine -->
+
+                        <Expander
+                            Header="Engine"
+                            IsExpanded="False">
+
+                            <StackPanel
+                                Margin="0,10,0,4"
+                                Spacing="8">
+
+                                <TextBlock
+                                    Text="Thrust (N)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.ThrustNewtons}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Burn Duration (s)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.BurnDurationSeconds}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Thrust Angle (degrees)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.ThrustAngleDegrees}"
+                                    HorizontalContentAlignment="Right"/>
+
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Environment -->
+
+                        <Expander
+                            Header="Environment"
+                            IsExpanded="False">
+
+                            <StackPanel
+                                Margin="0,10,0,4"
+                                Spacing="8">
+
+                                <TextBlock
+                                    Text="Gravity (m/s²)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.GravityMetersPerSecondSquared}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                
+                                <TextBlock
+                                    Text="Wind Speed (m/s)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.WindSpeedMetersPerSecond}"
+                                    HorizontalContentAlignment="Right"/>
+
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Simulation -->
+
+                        <Expander
+                            Header="Simulation"
+                            IsExpanded="False">
+
+                            <StackPanel
+                                Margin="0,10,0,4"
+                                Spacing="8">
+
+                                <TextBlock
+                                    Text="Time Step (s)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.TimeStepSeconds}"
+                                    HorizontalContentAlignment="Right"/>
+
+                                <TextBlock
+                                    Text="Maximum Time (s)"
+                                    Foreground="#B8C0CC"/>
+
+                                <TextBox
+                                    Text="{Binding Input.MaximumSimulationTimeSeconds}"
+                                    HorizontalContentAlignment="Right"/>
+
+                            </StackPanel>
+                        </Expander>
+
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Run Button -->
+
+                <Button
+                    Grid.Row="2"
+                    Content="Run New Simulation"
+                    Command="{Binding RunSimulationCommand}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    Margin="0,14,0,0"
+                    Padding="12"
+                    FontSize="15"
+                    FontWeight="Bold"/>
+
+            </Grid>
+        </Border>
+
+        <!-- ================================================= -->
+        <!-- MAIN WORKSPACE                                    -->
+        <!-- ================================================= -->
+
+        <Grid
+            Grid.Column="1"
+            Margin="0,16,16,16"
+            RowDefinitions="Auto,Auto,*,Auto,Auto">
+
+            <!-- Header -->
+
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="*,Auto"
+                Margin="0,0,0,12">
+
+                <StackPanel>
+
+                    <TextBlock
+                        Text="AeroSim Flight Analysis"
+                        FontSize="28"
+                        FontWeight="Bold"
+                        Foreground="#F4F6F8"/>
+
+                    <TextBlock
+                        Text="Two-dimensional rocket flight simulation"
+                        Margin="0,3,0,0"
+                        FontSize="13"
+                        Foreground="#9CA6B5"/>
+
+                </StackPanel>
+
+                <Border
+                    Grid.Column="1"
+                    Padding="14,10"
+                    Background="#1A2029"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="6">
+
+                    <StackPanel
+                        Spacing="8"
+                        HorizontalAlignment="Center">
+
+                        <TextBlock
+                            Text="{Binding EngineStatus, StringFormat='ENGINE {0}'}"
+                            FontSize="13"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"
+                            Foreground="#D9E0E8"/>
+
+
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+
+            <!-- Live Telemetry Cards -->
+
+            <Grid
+                Grid.Row="1"
+                RowDefinitions="Auto,Auto"
+                ColumnDefinitions="*,*,*,*,*"
+                RowSpacing="10"
+                ColumnSpacing="10"
+                Margin="0,0,0,12">
+
+                <!-- Time -->
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="TIME"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding CurrentTimeSeconds, StringFormat='{}{0:F2} s'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Altitude -->
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="ALTITUDE"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding CurrentY, StringFormat='{}{0:F2} m'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Range -->
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="RANGE"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding CurrentX, StringFormat='{}{0:F2} m'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Speed -->
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="SPEED"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding CurrentSpeed, StringFormat='{}{0:F2} m/s'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Horizontal Speed -->
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="HORIZONTAL"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding HorizontalSpeed, StringFormat='{}{0:F2} m/s'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Vertical Speed -->
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="VERTICAL"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding VerticalSpeed, StringFormat='{}{0:F2} m/s'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Acceleration -->
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="ACCELERATION"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding CurrentAcceleration, StringFormat='{}{0:F2} m/s²'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- G Force -->
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="G-FORCE"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding CurrentGForce, StringFormat='{}{0:F2} G'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+
+                <!-- Mass -->
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="AIR DENSITY"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding CurrentAirDensity,StringFormat='{}{0:F3} kg/m³'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Fuel -->
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    Padding="12"
+                    Background="#171B22"
+                    BorderBrush="#303743"
+                    BorderThickness="1"
+                    CornerRadius="8">
+
+                    <StackPanel Spacing="4">
+
+                        <TextBlock
+                            Text="FUEL"
+                            FontSize="11"
+                            Foreground="#8490A0"/>
+
+                        <TextBlock
+                            Text="{Binding CurrentFuelMassKg, StringFormat='{}{0:F2} kg'}"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Foreground="#F4F6F8"/>
+
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+
+            <!-- Simulation View -->
+
+            <Border
+                Grid.Row="2"
+                Background="#05070A"
+                BorderBrush="#303743"
+                BorderThickness="1"
+                CornerRadius="10"
+                ClipToBounds="True">
+
+                <controls:SimulationCanvas
+                    RocketPosition="{Binding RocketPosition}"
+                    RocketVelocity="{Binding RocketVelocity}"
+                    EngineIsRunning="{Binding EngineIsRunning}"
+                    Trail="{Binding Trail}"
+                    FollowRocket="{Binding FollowRocket, Mode=TwoWay}"/>
+
+            </Border>
+
+            <!-- Flight Summary -->
+
+            <Border
+                Grid.Row="3"
+                Margin="0,12,0,0"
+                Padding="12"
+                Background="#14181F"
+                BorderBrush="#303743"
+                BorderThickness="1"
+                CornerRadius="8">
+
+                <Grid RowDefinitions="Auto,Auto">
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Text="FLIGHT SUMMARY"
+                        Margin="0,0,0,8"
+                        FontSize="11"
+                        FontWeight="Bold"
+                        Foreground="#8490A0"/>
+
+                    <Grid
+                        Grid.Row="1"
+                        ColumnDefinitions="*,*,*,*"
+                        ColumnSpacing="10">
+
+                        <!-- Maximum Altitude -->
+
+                        <Border
+                            Grid.Column="0"
+                            Padding="10"
+                            Background="#171B22"
+                            BorderBrush="#303743"
+                            BorderThickness="1"
+                            CornerRadius="6">
+
+                            <StackPanel Spacing="3">
+
+                                <TextBlock
+                                    Text="MAX ALTITUDE"
+                                    FontSize="10"
+                                    Foreground="#8490A0"/>
+
+                                <TextBlock
+                                    Text="{Binding MaximumAltitude,
+                                                StringFormat='{}{0:F2} m'}"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Foreground="#F4F6F8"/>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Maximum Speed -->
+
+                        <Border
+                            Grid.Column="1"
+                            Padding="10"
+                            Background="#171B22"
+                            BorderBrush="#303743"
+                            BorderThickness="1"
+                            CornerRadius="6">
+
+                            <StackPanel Spacing="3">
+
+                                <TextBlock
+                                    Text="MAX SPEED"
+                                    FontSize="10"
+                                    Foreground="#8490A0"/>
+
+                                <TextBlock
+                                    Text="{Binding MaximumSpeed,
+                                                StringFormat='{}{0:F2} m/s'}"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Foreground="#F4F6F8"/>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Flight Duration -->
+
+                        <Border
+                            Grid.Column="2"
+                            Padding="10"
+                            Background="#171B22"
+                            BorderBrush="#303743"
+                            BorderThickness="1"
+                            CornerRadius="6">
+
+                            <StackPanel Spacing="3">
+
+                                <TextBlock
+                                    Text="MASS"
+                                    FontSize="10"
+                                    Foreground="#8490A0"/>
+
+                                <TextBlock
+                                    Text="{Binding CurrentMassKg,StringFormat='{}{0:F2} kg'}"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Foreground="#F4F6F8"/>
+
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Flight Range -->
+
+                        <Border
+                            Grid.Column="3"
+                            Padding="10"
+                            Background="#171B22"
+                            BorderBrush="#303743"
+                            BorderThickness="1"
+                            CornerRadius="6">
+
+                            <StackPanel Spacing="3">
+
+                                <TextBlock
+                                    Text="FLIGHT RANGE"
+                                    FontSize="10"
+                                    Foreground="#8490A0"/>
+
+                                <TextBlock
+                                    Text="{Binding HorizontalRange,
+                                                StringFormat='{}{0:F2} m'}"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Foreground="#F4F6F8"/>
+
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+                </Grid>
+            </Border>
+
+
+            <!-- Simulation Controls -->
+
+            <Border
+                Grid.Row="4"
+                Margin="0,12,0,0"
+                Padding="12"
+                Background="#171B22"
+                BorderBrush="#303743"
+                BorderThickness="1"
+                CornerRadius="8">
+
+                <Grid
+                    ColumnDefinitions="*,Auto,*">
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Spacing="10">
+
+                        <Button
+                            Content="▶ Play"
+                            Command="{Binding PlayCommand}"
+                            MinWidth="100"/>
+
+                        <Button
+                            Content="⏸ Pause"
+                            Command="{Binding PauseCommand}"
+                            MinWidth="100"/>
+
+                        <Button
+                            Content="↺ Reset"
+                            Command="{Binding ResetCommand}"
+                            MinWidth="100"/>
+
+                        <Button
+                            Content="◎ Follow Rocket"
+                            Command="{Binding EnableFollowCommand}"
+                            MinWidth="120"/>
+    
+                        <Button
+                            Content="📋 Mission Log"
+                            Command="{Binding OpenMissionLogCommand}"
+                            Margin="8,0,0,0"/>
+                    </StackPanel>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</Window>

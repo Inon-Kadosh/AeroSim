@@ -1,0 +1,78 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:AeroSim.App.ViewModels"
+    x:Class="AeroSim.App.Views.MissionLogWindow"
+    x:DataType="vm:MissionLogViewModel"
+    Width="650"
+    Height="500"
+    MinWidth="500"
+    MinHeight="350"
+    Title="Mission Event Log"
+    Background="#101318"
+    mc:Ignorable="d">
+
+    <Grid
+        Margin="18"
+        RowDefinitions="Auto,*">
+
+        <StackPanel
+            Grid.Row="0"
+            Margin="0,0,0,14">
+
+            <TextBlock
+                Text="Mission Event Log"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="#F4F6F8"/>
+
+            <TextBlock
+                Text="Detected events from the current simulation"
+                Margin="0,4,0,0"
+                FontSize="13"
+                Foreground="#9CA6B5"/>
+
+        </StackPanel>
+
+        <Border
+            Grid.Row="1"
+            Background="#171B22"
+            BorderBrush="#303743"
+            BorderThickness="1"
+            CornerRadius="8">
+
+            <DataGrid
+                ItemsSource="{Binding Events}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                GridLinesVisibility="Horizontal"
+                HeadersVisibility="Column"
+                Background="Transparent"
+                BorderThickness="0">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn
+                        Header="Time"
+                        Binding="{Binding TimeSeconds, StringFormat='{}{0:F2} s'}"
+                        Width="100"/>
+
+                    <DataGridTextColumn
+                        Header="Event"
+                        Binding="{Binding EventType}"
+                        Width="180"/>
+
+                    <DataGridTextColumn
+                        Header="Description"
+                        Binding="{Binding Description}"
+                        Width="*"/>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Border>
+
+    </Grid>
+</Window>
