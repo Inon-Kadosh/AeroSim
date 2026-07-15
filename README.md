@@ -240,6 +240,3 @@ dotnet run --project AeroSim.App
 
 Software Engineering Student
 
-LinkedIn: *(link)*
-
-GitHub: *(link)*
